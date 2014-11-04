@@ -72,8 +72,8 @@ def addFriend(request):
         return HttpResponse("Error authenticating user")
 
     data = json.loads(request.read())
-    your_bbdid = data[Beep.BBDConstants.BBD_ID]
-    friend_bbdid = data[Beep.BBDConstants.FRIEND_BBD_ID]
+    your_bbdid = data[Beep.Constants.BeepServerConstants.BBD_ID]
+    friend_bbdid = data[Beep.Constants.BeepServerConstants.FRIEND_BBD_ID]
     try:
         friendObj = UserDetails.objects.get(bbdid=friend_bbdid)
     except ObjectDoesNotExist:
