@@ -16,6 +16,7 @@ from Platform.views import authenticateURL
 import Chat.views
 import Chat.Constants
 import Platform.Constants
+import User.Constants
 import json
 import requests
 import logging
@@ -71,11 +72,21 @@ def addFriend(request):
         return HttpResponse("Error authenticating user")
 
     data = json.loads(request.read())
-#    logger.warning("adding friend")
-    your_bbdid = data[Beep.Constants.BeepServerConstants.BBD_ID]
-    friend_bbdid = data[Beep.Constants.BeepServerConstants.FRIEND_BBD_ID]
+    your_bbdid = data[Beep.BBDConstants.BBD_ID]
+    friend_bbdid = data[Beep.BBDConstants.FRIEND_BBD_ID]
+    try:
+        friendObj = UserDetails.objects.get(bbdid=friend_bbdid)
+    except ObjectDoesNotExist:
+        httpoutput = utils.errorJson(dict())
+        return HttpResponse(httpoutput,content_type=Platform.Constants.RESPONSE_JSON_TYPE)
+
     addfriend = Friend(bbdid=your_bbdid, friend_bbd_id=friend_bbdid)
     addfriend.save()
-    return HttpResponse('Success')
+    friendnick = friendObj.name;
+    jsondata = dict({User.Constants.UserServerConstants.FRIEND_NICK:friendnick,
+                     User.Constants.UserServerConstants.FRIEND_BBD_ID:friend_bbdid})
+    httpoutput = utils.successJson(jsondata)
+    return HttpResponse(httpoutput,content_type=Platform.Constants.RESPONSE_JSON_TYPE)
+
 
 
