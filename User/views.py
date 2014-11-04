@@ -66,7 +66,7 @@ def createUser(request):
     name_req = data[Beep.Constants.BeepServerConstants.USERNAME]
     return HttpResponse(httpoutput,content_type=Platform.Constants.RESPONSE_JSON_TYPE)
 
-
+@csrf_exempt
 def addFriend(request):
     if authenticateURL(request) == False:
         return HttpResponse("Error authenticating user")
