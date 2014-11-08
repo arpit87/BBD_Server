@@ -49,6 +49,3 @@ class UserAPITestCase(TestCase):
     def test_addFriend(self):
         response = self.client.post('/User/addFriend/',json.dumps({Constants.BeepServerConstants.APPUUID:'123', Constants.BeepServerConstants.BBD_ID:1, Constants.BeepServerConstants.FRIEND_BBD_ID:2}),'application/json')
         self.assertEqual(response.status_code,200)
-        friend = Friend.objects.get(bbdid=1)
-        self.assertEqual(friend.bbdid,1)
-        self.assertEqual(friend.friend_bbd_id,2)

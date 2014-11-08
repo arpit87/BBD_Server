@@ -46,7 +46,7 @@ def createUser(request):
 
     # create char user now
     chars = string.ascii_uppercase + string.digits
-    chatuser = "user" + str(newuser.bbdid)
+    chatuser =  str(newuser.bbdid)
     chatpass = ''.join(random.choice(chars) for _ in range(6))
     url = 'http://127.0.0.1:80/Chat/createChatUser/'
     jsondata = json.dumps({Chat.Constants.ChatServerConstants.CHATUSERNAME: chatuser,

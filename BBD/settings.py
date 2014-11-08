@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     'Beep',
     'Platform',
     'Chat',
-    'south',
+   # 'south',
 )
 
 MIDDLEWARE_CLASSES = (
