@@ -41,7 +41,7 @@ class UserAPITestCase(TestCase):
 
     def test_createUser(self):
         inputval = json.dumps({Constants.BeepServerConstants.USERNAME:'Arpit', Constants.BeepServerConstants.APPUUID:'123'})
-	print(inputval)
+        print(inputval)
         response = self.client.post('/User/createUser/',inputval,'application/json')
         self.assertEqual(response.status_code,200)
         print(response.content)
@@ -49,3 +49,14 @@ class UserAPITestCase(TestCase):
     def test_addFriend(self):
         response = self.client.post('/User/addFriend/',json.dumps({Constants.BeepServerConstants.APPUUID:'123', Constants.BeepServerConstants.BBD_ID:1, Constants.BeepServerConstants.FRIEND_BBD_ID:2}),'application/json')
         self.assertEqual(response.status_code,200)
+
+   # def setUp(self):
+    #    UserDetails.objects.create(bbdid= 1001,name="Dev Dude" ,date_joined=timezone.now().date())
+    #    APPDATA.objects.create(appuuid="asasf",bbdid=1001)
+
+    def test_createDevUser(self):
+        inputval = json.dumps({Constants.BeepServerConstants.USERNAME:'dev2118', Constants.BeepServerConstants.APPUUID:'123'})
+        print(inputval)
+        response = self.client.post('/User/createUser/',inputval,'application/json')
+        self.assertEqual(response.status_code,200)
+        print(response.content)

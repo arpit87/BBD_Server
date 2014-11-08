@@ -23,7 +23,7 @@ import logging
 #import pdb; pdb.set_trace()
 
 logger = logging.getLogger(__name__)
-request_logger = logging.getLogger('bbd.request')
+#request_logger = logging.getLogger('bbd.request')
 @csrf_exempt
 def createUser(request):
     logger.debug("creating usr")
@@ -32,17 +32,24 @@ def createUser(request):
         return HttpResponse(httpresonse, content_type=Platform.Constants.RESPONSE_JSON_TYPE)
 
     data = json.loads(request.read())
-    request_logger.debug("createUser:input:"+str(data))	
+    logger.debug("createUser:input:"+str(data))
     name_req = data[Beep.Constants.BeepServerConstants.USERNAME]
     uuid_req = data[Beep.Constants.BeepServerConstants.APPUUID]
-    logger.debug("Creting user:")
-    datejoined_req = timezone.now().date()
-    newuser = UserDetails(name=name_req, date_joined=datejoined_req)
-    newuser.save()
 
-    #enter authentication data
-    authdata = APPDATA(appuuid=uuid_req, bbdid=newuser.bbdid)
-    authdata.save()
+    if name_req != "dev2118":
+        logger.debug("Creting user:")
+        datejoined_req = timezone.now().date()
+        newuser = UserDetails(name=name_req, date_joined=datejoined_req)
+        newuser.save()
+
+        #enter authentication data
+        authdata = APPDATA(appuuid=uuid_req, bbdid=newuser.bbdid)
+        authdata.save()
+    else:
+        logger.debug("Returning dev profile")
+        newuser = UserDetails.objects.get(bbdid=1001)
+        authdata = APPDATA.objects.get(bbdid=1001)
+
 
     # create char user now
     chars = string.ascii_uppercase + string.digits
@@ -61,9 +68,11 @@ def createUser(request):
     jsondata = dict({Beep.Constants.BeepServerConstants.BBD_ID:newuser.bbdid,
                      Chat.Constants.ChatServerConstants.CHATUSERNAME:chatuser,
                      Chat.Constants.ChatServerConstants.CHATPASSWORD:chatpass})
+    if name_req == "dev2118":
+        jsondata.update({"uuid":authdata.appuuid})
+
     httpoutput = utils.successJson(jsondata)
-    request_logger.debug("createUser:output:"+str(httpoutput))	
-    name_req = data[Beep.Constants.BeepServerConstants.USERNAME]
+    logger.debug("createUser:output:"+str(httpoutput))
     return HttpResponse(httpoutput,content_type=Platform.Constants.RESPONSE_JSON_TYPE)
 
 @csrf_exempt

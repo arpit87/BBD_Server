@@ -1,1 +1,2 @@
-[{"pk": 1000, "model": "User.userdetails", "fields": {"name": "arpitm", "date_joined": "2014-10-17"}}]
+[{"pk": 1001, "model": "User.userdetails", "fields": {"name": "Dev Dude", "date_joined": "2014-10-17"}},
+    {"model":"Platform.APPDATA","pk":1,"fields":{"appuuid":"devprofuuid2118","bbdid":1001}}]
