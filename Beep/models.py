@@ -5,7 +5,10 @@ class Beep(models.Model):
     beepid = models.AutoField(primary_key=True)
     beep_str = models.CharField(max_length=140)
     created_by = models.IntegerField(null=False)  # bbsid of creator
-    beeplevel = models.IntegerField()
+    beeplevel = models.IntegerField(default=3)
+    image_str = models.CharField(max_length=255,null=True)
+    rebeeps = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
     misc_col1 = models.CharField(max_length=255)
     misc_col2 = models.CharField(max_length=255)
     misc_col3 = models.IntegerField(null=True)

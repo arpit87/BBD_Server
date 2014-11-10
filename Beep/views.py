@@ -41,6 +41,7 @@ def createBeep(request):
     beepstr_req = data[Constants.BeepServerConstants.BEEP_STR]
     bbdid_req = data[Constants.BeepServerConstants.BBD_ID]
     beeplevel_req = data[Constants.BeepServerConstants.BEEPLEVEL]
+
     beep = Beep(created_by = bbdid_req,beep_str=beepstr_req,beeplevel=beeplevel_req)
     beep.save()
 
