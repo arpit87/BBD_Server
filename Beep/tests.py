@@ -27,6 +27,12 @@ class GetBeepListTestCase(TestCase):
         print(response.content)
 
 
+    def test_getMyBeepList(self):
+        input = dict({Constants.BeepServerConstants.NUMBEEPS:4,Constants.BeepServerConstants.BBD_ID:1001})
+        response = self.client.get('/Beep/getMyBeepList/',input)
+        self.assertEqual(response.status_code,200)
+        print(response.content)
+
 
 class SendBeepTestCase(TestCase):
     def test_sendbeep(self):

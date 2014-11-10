@@ -84,3 +84,20 @@ def sendBeep(request):
     returndata = dict()
     httpresponse = utils.successJson(returndata)
     return HttpResponse(httpresponse,content_type=Platform.Constants.RESPONSE_JSON_TYPE)
+
+
+@csrf_exempt
+def getMyBeepList(request):
+    logger.debug('get beep list')
+    if authenticateURL(request)==False:
+        httpresonse = utils.errorJson("Error authenticating user")
+        return HttpResponse(httpresonse,content_type=Platform.Constants.RESPONSE_JSON_TYPE)
+
+    userbbdid=request.GET[Constants.BeepServerConstants.BBD_ID]
+    numbeeps=request.GET[Constants.BeepServerConstants.NUMBEEPS]
+    output = Beep.objects.all().filter(created_by = userbbdid).order_by('?')[:numbeeps]
+    #jsondata = serializers.serialize('json',output)
+    jsondata = list(output.values())
+    jsondata = dict({"BeepList":jsondata})
+    httpoutput = utils.successJson(jsondata)
+    return HttpResponse(httpoutput,content_type=Platform.Constants.RESPONSE_JSON_TYPE)
