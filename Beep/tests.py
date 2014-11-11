@@ -16,7 +16,7 @@ class BeepTestCase(TestCase):
         response = self.client.post('/Beep/createBeep/',input, 'application/json')
         beep = Beep.objects.get(pk=1)
         self.assertEqual(beep.beep_str,"Bhak Bhosadi")
-        self.assertEqual(beep.created_by,1000)
+        self.assertEqual(beep.created_by,1001)
 
 
 class GetBeepListTestCase(TestCase):
