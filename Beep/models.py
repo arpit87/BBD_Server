@@ -29,6 +29,7 @@ class Beep(models.Model):
 
 
 class SentBeep(models.Model):
+    beep = models.ForeignKey(Beep,null=False)
     from_id = models.IntegerField(null=False)
     to_id = models.IntegerField(null=False)
     date_time = models.DateTimeField(null=False,default=datetime.now())
