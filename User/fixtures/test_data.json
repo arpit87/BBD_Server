@@ -908,33 +908,6 @@
     }
 },
 {
-    "pk": 3,
-    "model": "Trends.trendsupdatelasttime",
-    "fields": {
-        "last_update_time": "2014-09-14T00:00:00Z",
-        "trend_type": 1,
-        "misc": 1
-    }
-},
-{
-    "pk": 4,
-    "model": "Trends.trendsupdatelasttime",
-    "fields": {
-        "last_update_time": "2014-09-14T00:00:00Z",
-        "trend_type": 2,
-        "misc": 0
-    }
-},
-{
-    "pk": 5,
-    "model": "Trends.trendsupdatelasttime",
-    "fields": {
-        "last_update_time": "2014-09-14T00:00:00Z",
-        "trend_type": 3,
-        "misc": 0
-    }
-},
-{
     "pk": 7,
     "model": "Trends.beeptimetrends",
     "fields": {
@@ -951,44 +924,5 @@
         "beep_freq": 2,
         "trend_type": 1
     }
-},
-    {
-    "pk": 43,
-    "model": "Trends.beeptimetrends",
-    "fields": {
-        "beep": 8,
-        "beep_freq": 3,
-        "trend_type": 2
-    }
-},
-{
-    "pk": 34,
-    "model": "Trends.beeptimetrends",
-    "fields": {
-        "beep": 1,
-        "beep_freq": 2,
-        "trend_type": 2
-    }
-},
-{
-    "pk": 14,
-    "model": "Trends.beeptimetrends",
-    "fields": {
-        "beep": 8,
-        "beep_freq": 3,
-        "trend_type": 3
-    }
-},
-{
-    "pk": 10,
-    "model": "Trends.beeptimetrends",
-    "fields": {
-        "beep": 1,
-        "beep_freq": 2,
-        "trend_type": 3
-    }
 }
-
-
-
 ]

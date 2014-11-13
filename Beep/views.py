@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from datetime import datetime
 import logging
-
+from django.core import serializers
 
 logger = logging.getLogger(__name__)
 
@@ -79,7 +79,7 @@ def sendBeep(request):
     to_bbdid = data[Constants.BeepServerConstants.FRIEND_BBD_ID]
     datentime =datetime.now()
 
-    sentbeep = SentBeep(from_id=from_bbdid, to_id=to_bbdid, beepid=beep_id, date_time=datentime)
+    sentbeep = SentBeep(from_id=from_bbdid, to_id=to_bbdid, beep= Beep.objects.get(beepid=beep_id), date_time=datentime)
     sentbeep.save()
 
     returndata = dict()

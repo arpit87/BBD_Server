@@ -6,7 +6,7 @@ class BeepsModelAdmin(admin.ModelAdmin):
     list_display = ('beepid','beep_str','beeplevel','created_by')
 
 class SendBeepModelAdmin(admin.ModelAdmin):
-    list_display = ('beepid', 'from_id', 'to_id', 'date_time')
+    list_display = ('beep', 'from_id', 'to_id', 'date_time')
 
 
 admin.site.register(Beep,BeepsModelAdmin)
