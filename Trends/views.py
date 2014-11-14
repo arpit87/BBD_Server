@@ -43,7 +43,7 @@ def getTimeTrends(request):
 
     serializers = MySerialiser()
     jsondata = serializers.serialize(beeplist)
-    jsondata = dict({"BeepList":jsondata,"new_num":newbeeps,"total_num":totalbeeps})
+    jsondata = dict({"BeepList":jsondata,"new_num":newbeeps,"total_num":totalbeeps,"trend_type":trend_type_req})
     httpoutput = utils.successJson(jsondata)
     return HttpResponse(httpoutput,content_type=Platform.Constants.RESPONSE_JSON_TYPE)
 
