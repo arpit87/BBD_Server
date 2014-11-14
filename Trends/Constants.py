@@ -5,6 +5,6 @@ class TimeConstants():
     MONTHLY = 3
 
 class TrendServerConstants():
-    TREND_TYPE = 'trendtype'
-    TOP_NUM = 'topnum'
+    TREND_TYPE = 'trend_type'
+    TOP_NUM = 'top_num'
 

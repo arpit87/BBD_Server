@@ -6,6 +6,7 @@ class beeptimetrends(models.Model):
     beep = models.ForeignKey(Beep,null=False)
     beep_freq = models.IntegerField(default=0)
     trend_type = models.IntegerField(default=1)
+    is_new = models.IntegerField(default=0)
 
     def __unicode__(self):
         return unicode(self.beep)

@@ -11,6 +11,8 @@ from Platform import utils
 from Trends.calc_trends import calc_trends
 from Beep.models import Beep
 from Platform.utils import MySerialiser
+from django.db.models import Sum
+
 # Create your views here.
 
 # input:
@@ -28,15 +30,20 @@ def getTimeTrends(request):
         calc_trends(trend_type_req)
 
     this_trend_type_all_rows = beeptimetrends.objects.filter(trend_type = trend_type_req)
+    totalbeeps = this_trend_type_all_rows.aggregate(Sum("beep_freq"))['beep_freq__sum']
+    newbeeps = this_trend_type_all_rows.aggregate(Sum("is_new"))['is_new__sum']
+
     output = this_trend_type_all_rows.order_by('beep_freq')[:top_num]
     beeplist =  list()
     for row in output:
         beepoutput = Beep.objects.get(beepid=row.beep_id)
         beepoutput.rebeeps = row.beep_freq
         beeplist.append(beepoutput)
+
+
     serializers = MySerialiser()
     jsondata = serializers.serialize(beeplist)
-    jsondata = dict({"BeepList":jsondata})
+    jsondata = dict({"BeepList":jsondata,"new_num":newbeeps,"total_num":totalbeeps})
     httpoutput = utils.successJson(jsondata)
     return HttpResponse(httpoutput,content_type=Platform.Constants.RESPONSE_JSON_TYPE)
 
