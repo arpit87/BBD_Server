@@ -33,7 +33,7 @@ def getTimeTrends(request):
     totalbeeps = this_trend_type_all_rows.aggregate(Sum("beep_freq"))['beep_freq__sum']
     newbeeps = this_trend_type_all_rows.aggregate(Sum("is_new"))['is_new__sum']
 
-    output = this_trend_type_all_rows.order_by('beep_freq')[:top_num]
+    output = this_trend_type_all_rows.order_by('-beep_freq')[:top_num]
     beeplist =  list()
     for row in output:
         beepoutput = Beep.objects.get(beepid=row.beep_id)
