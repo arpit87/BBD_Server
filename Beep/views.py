@@ -79,7 +79,11 @@ def sendBeep(request):
     to_bbdid = data[Constants.BeepServerConstants.FRIEND_BBD_ID]
     datentime =datetime.now()
 
-    sentbeep = SentBeep(from_id=from_bbdid, to_id=to_bbdid, beep= Beep.objects.get(beepid=beep_id), date_time=datentime)
+    thisbeep= Beep.objects.get(beepid=beep_id)
+    thisbeep.rebeeps = thisbeep.rebeeps + 1
+    thisbeep.save()
+
+    sentbeep = SentBeep(from_id=from_bbdid, to_id=to_bbdid, beep=thisbeep, date_time=datentime)
     sentbeep.save()
 
     returndata = dict()
