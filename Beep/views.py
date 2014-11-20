@@ -60,7 +60,7 @@ def getBeepList(request):
 
     userlevel=request.GET[Constants.BeepServerConstants.BEEPLEVEL]
     numbeeps=request.GET[Constants.BeepServerConstants.NUMBEEPS]
-    output = Beep.objects.all().filter(beeplevel__lt = userlevel).order_by('?')[:numbeeps]
+    output = Beep.objects.all().filter(beeplevel__lte = userlevel).order_by('?')[:numbeeps]
     #jsondata = serializers.serialize('json',output)
     jsondata = list(output.values())
     jsondata = dict({"BeepList":jsondata})
