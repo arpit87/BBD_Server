@@ -4,11 +4,8 @@
     <data-source source="LOCAL" name="Django default" uuid="f2fc6668-c962-4424-ab7f-e97a8a7ba1b6">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1/bbs_db</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>dfc8dfc2dfcbdfc1dfc8dfc2df9adfd9dfcedf9bdfcbdfcedfc7df9bdfc4</user-password>
+      <jdbc-url>jdbc:mysql://127.0.0.1/yolodb</jdbc-url>
       <libraries />
     </data-source>
   </component>
 </project>
-
